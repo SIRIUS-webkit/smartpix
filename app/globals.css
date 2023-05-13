@@ -1,3 +1,110 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import "./_fontsizing.css";
+
+@layer base {
+  h1 {
+    @apply text-4xl;
+  }
+  h2 {
+    @apply text-4xl;
+  }
+
+  h3 {
+    @apply text-3xl;
+  }
+  h4 {
+    @apply text-2xl;
+  }
+
+  h5 {
+    @apply text-xl;
+  }
+  h6 {
+    @apply text-lg;
+  }
+
+  .p1 {
+    @apply text-md;
+  }
+
+  .p2 {
+    @apply text-base;
+  }
+
+  .p3 {
+    @apply text-sm;
+  }
+
+  .p4 {
+    @apply text-xsm;
+  }
+
+  .p5 {
+    @apply text-xxsm;
+  }
+
+  html {
+    @apply font-lato;
+  }
+
+  body {
+    @apply bg-gray-100;
+  }
+}
+
+@layer components {
+  .primary-button {
+    @apply py-2.5 px-12 text-white p2 font-bold rounded-[8px] transition-all duration-500 bg-primary hover:shadow-md hover:bg-[#0C5FCC];
+  }
+
+  .disabled-button {
+    @apply py-2.5 px-12 text-white p2 font-bold rounded-[10px] transition-all duration-500 hover:shadow-md bg-form-border text-disable;
+  }
+
+  .nav-noti {
+    @apply inline-flex items-center justify-center p4 font-bold w-7 h-2 px-1 py-2.5 ml-3 mr-3 text-white bg-warning rounded-full;
+  }
+
+  .default-input {
+    @apply focus:outline-none focus:border-main-secondary transition placeholder:text-disable mx-auto text-gray-500 p2 mt-1 focus:ring-0 border shadow-sm border-form-border block w-full py-1.5 px-5 rounded-md;
+  }
+
+  .loading-skeleton {
+    @apply bg-[#ebebeb] rounded inline-flex text-lg relative overflow-hidden leading-none h-5;
+
+    &::after {
+      content: " ";
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 100%;
+      background-repeat: no-repeat;
+      background-image: linear-gradient(90deg, #ebebeb, #f5f5f5, #ebebeb);
+      transform: translateX(-100%);
+      animation-name: loading-skeleton;
+      animation-direction: normal;
+      animation-duration: 1.5s;
+      animation-timing-function: ease-in-out;
+      animation-iteration-count: infinite;
+    }
+  }
+
+  .red-star {
+    color: red;
+  }
+}
+.mantine-TextInput-label {
+  font-family: "Lato", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 28px;
+}
+.mantine-TextInput-input {
+  padding: 15px;
+  font-family: "Lato", sans-serif;
+}
