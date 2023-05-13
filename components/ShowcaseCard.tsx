@@ -2,7 +2,7 @@
 import React from "react";
 import moment from "moment";
 import { Card, Image } from "@mantine/core";
-import { truncateString } from "../../utils/common";
+import { truncateString } from "../utils/common";
 import CopyBtn from "./CopyBtn";
 
 type ShowCaseProps = {

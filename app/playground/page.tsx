@@ -1,9 +1,9 @@
 "use client";
 import React, { useEffect, useContext } from "react";
 import { useRouter } from "next/navigation";
-import { AuthContext } from "../../utils/AuthContext";
-import TextToImage from "../components/TextToImage";
-import Title from "../components/Title";
+import { AuthContext } from "@/utils/AuthContext";
+import TextToImage from "@/components/TextToImage";
+import Title from "@/components/Title";
 
 function Playground() {
   const { user }: any = useContext(AuthContext);

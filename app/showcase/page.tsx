@@ -1,8 +1,6 @@
-"use clinet";
-
 import React from "react";
-import showcaseimages from "../../utils/getShowcaseImage";
-import ShowcaseCard from "../components/ShowcaseCard";
+import showcaseimages from "@/utils/getShowcaseImage";
+import ShowcaseCard from "@/components/ShowcaseCard";
 
 function ShowCase() {
   return (

@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import initFirebaseApp from "../../../utils/firebase/config";
+import initFirebaseApp from "@/utils/firebase/config";
 
 function login() {
   const provider: GoogleAuthProvider = new GoogleAuthProvider();
