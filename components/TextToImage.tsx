@@ -164,7 +164,9 @@ function TextToImage() {
                 <Image
                   src={imageUrl}
                   alt="result"
-                  className="w-full h-full rounded-lg object-cover"
+                  height={200}
+                  radius="md"
+                  className="w-full h-full object-cover"
                 />
                 <div>
                   <div
