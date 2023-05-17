@@ -1,52 +1,61 @@
 "use client";
-import React, { useState } from "react";
 
-function SideBar() {
-  const [open, setOpen] = useState(true);
+import React, { Dispatch, SetStateAction } from "react";
+import { usePathname } from "next/navigation";
+import { Image } from "@mantine/core";
+interface SideBarProps {
+  open: boolean;
+  setOpen: Dispatch<SetStateAction<boolean>>;
+}
+
+function SideBar({ open, setOpen }: SideBarProps) {
   const Menus = [
-    { title: "Text To Image", src: "Chart_fill" },
-    { title: "Object Detection", src: "Chat" },
-    { title: "Image Classification", src: "User", gap: true },
-    { title: "Model Traning", src: "Calendar" },
-
-    { title: "Files ", src: "Folder", gap: true },
-    { title: "Setting", src: "Setting" },
+    { title: "Text To Image", src: "Chart_fill", activeText: "playground" },
+    { title: "Object Detection", src: "Chat", activeText: "objectdetection" },
+    {
+      title: "Image Classification",
+      src: "User",
+      activeText: "objectclassification",
+    },
+    { title: "Model Traning", src: "Calendar", activeText: "modeltraining" },
+    { title: "Setting", src: "Calendar", activeText: "setting", gap: true },
   ];
+  const pathname: string = usePathname();
 
   return (
     <div
       className={` ${
         open ? "w-72" : "w-20 "
-      } bg-white  h-screen p-5  pt-8 relative duration-300`}
+      } bg-white  min-h-screen p-5 left-0 top-0  shadow-sm pt-8 fixed duration-300`}
     >
-      {/* <img
+      <Image
         src="./src/assets/control.png"
         className={`absolute cursor-pointer -right-3 top-9 w-7 border-dark-purple
            border-2 rounded-full  ${!open && "rotate-180"}`}
         onClick={() => setOpen(!open)}
-        alt=""
-      /> */}
+        alt="close"
+      />
       <div className="flex gap-x-4 items-center">
         {/* <img
           src="./src/assets/logo.png"
           className={`cursor-pointer duration-500 ${open && "rotate-[360deg]"}`}
         /> */}
-        <h1
-          className={`origin-left font-medium text-xl duration-200 ${
-            !open && "scale-0"
-          }`}
+        <h3
+          className={`origin-left font-bold duration-200 ${!open && "scale-0"}`}
         >
-          Designer
-        </h1>
+          Smart Pix
+        </h3>
       </div>
       <ul className="pt-6">
         {Menus.map((Menu, index) => (
           <li
             key={index}
-            className={`flex rounded-md p2-regular-16 cursor-pointer p-3 hover:bg-[#45444d] items-center gap-x-4 
+            className={`flex rounded-md p2-regular-16 cursor-pointer p-3 hover:bg-main-gradient hover:text-white items-center gap-x-4 
               ${Menu.gap ? "mt-9" : "mt-2"} ${
-              index === 0 && "bg-light-white"
-            } `}
+              pathname.includes(Menu.activeText)
+                ? "bg-main-gradient text-white"
+                : null
+            }`}
           >
             {/* <img src={`./src/assets/${Menu.src}.png`} /> */}
             <span
