@@ -6,7 +6,7 @@ function ShowCase() {
   return (
     <div className="py-32 max-w-[1100px] mx-auto">
       <div>
-        <h3 className="text-center font-[900]">Explore AI Generated Art</h3>
+        <h2 className="text-center font-[900]">Explore AI Generated Art</h2>
         <p className="p2-regular-16 text-disable mt-4 text-center">
           View stunning AI artworks created using SmartPix&apos;s cutting-edge
           algorithms

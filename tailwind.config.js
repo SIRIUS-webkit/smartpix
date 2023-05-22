@@ -28,7 +28,7 @@ module.exports = {
       disable: "#979797",
       primary: "#1977F2",
       secondary: "#0C5FCC",
-
+      trinary: "#dfeeff",
       slate: {
         50: "#F8FAFC",
         100: "#F1F5F9",
@@ -47,6 +47,8 @@ module.exports = {
     },
     extend: {
       backgroundImage: {
+        "main-bg-gradient":
+          "linear-gradient(0deg, rgba(206,221,242,1) 0%, rgba(241,242,248,1) 86%)",
         "main-gradient":
           "linear-gradient(90deg, hsla(228, 17%, 53%, 1) 0%, hsla(229, 28%, 88%, 1) 100%)",
       },

@@ -9,6 +9,7 @@ import Navbar from "@/components/Navbar";
 import { AuthContextProvider } from "@/utils/AuthContext";
 import ScrollToTopButton from "@/components/ScrollToTopButton";
 import SideBar from "@/components/SideBar";
+import Footer from "@/components/Footer";
 
 const lato = Lato({ subsets: ["latin"], weight: ["400", "900", "700"] });
 
@@ -30,7 +31,7 @@ export default function RootLayout({
         <AuthContextProvider>
           {!pathname.includes("playground") ? (
             <>
-              <Navbar /> <main>{children}</main>
+              <Navbar /> <main>{children}</main> <Footer />
             </>
           ) : (
             <main className="">

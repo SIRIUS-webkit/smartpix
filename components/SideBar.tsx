@@ -1,8 +1,11 @@
 "use client";
 
 import React, { Dispatch, SetStateAction } from "react";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Image } from "@mantine/core";
+import { MdOutlineArrowBackIos } from "react-icons/md";
+import { HiOutlineChevronRight } from "react-icons/hi";
+
 interface SideBarProps {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
@@ -28,23 +31,31 @@ function SideBar({ open, setOpen }: SideBarProps) {
         open ? "w-72" : "w-20 "
       } bg-white  min-h-screen p-5 left-0 top-0  shadow-sm pt-8 fixed duration-300`}
     >
-      <Image
-        src="./src/assets/control.png"
-        className={`absolute cursor-pointer -right-3 top-9 w-7 border-dark-purple
-           border-2 rounded-full  ${!open && "rotate-180"}`}
+      <div
+        className="absolute cursor-pointer right-3 top-10 w-7"
+        role="presentation"
         onClick={() => setOpen(!open)}
-        alt="close"
-      />
+      >
+        {open ? (
+          <MdOutlineArrowBackIos className="text-[20px]" />
+        ) : (
+          <HiOutlineChevronRight className="text-[22px]" />
+        )}
+      </div>
       <div className="flex gap-x-4 items-center">
         {/* <img
           src="./src/assets/logo.png"
           className={`cursor-pointer duration-500 ${open && "rotate-[360deg]"}`}
         /> */}
-        <h3
-          className={`origin-left font-bold duration-200 ${!open && "scale-0"}`}
-        >
-          Smart Pix
-        </h3>
+        <Link href="/">
+          <h3
+            className={`origin-left font-bold duration-200 ${
+              !open && "scale-0"
+            }`}
+          >
+            Smart Pix
+          </h3>
+        </Link>
       </div>
       <ul className="pt-6">
         {Menus.map((Menu, index) => (

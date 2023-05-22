@@ -1,5 +1,10 @@
 /* // global font size and style */
 /* // font-size for mobile */
+h1 {
+  font-size: 56px;
+  font-weight: 700;
+  line-height: 74px;
+}
 h2 {
   font-size: 40px;
   font-weight: 700;
@@ -89,6 +94,11 @@ h6 {
 
 /* font-size for tablet and desktop */
 @media screen and (min-width: 600px) {
+  h1 {
+    font-size: 56px;
+    font-weight: 700;
+    line-height: 74px;
+  }
   h2 {
     font-size: 56px;
     font-weight: 700;

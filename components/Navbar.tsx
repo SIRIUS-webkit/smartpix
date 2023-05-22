@@ -29,7 +29,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="bg-white">
+    <nav className="">
       <div className="max-w-[1400px] mx-auto flex justify-between items-center py-6">
         {/* logo part */}
 
