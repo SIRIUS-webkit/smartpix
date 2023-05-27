@@ -6,14 +6,17 @@ import { GoCloudUpload } from "react-icons/go";
 import { UseFormReturnType } from "@mantine/form";
 import { TiDelete } from "react-icons/ti";
 
+type InputDataItem = {
+  url: string;
+  name: string;
+  binary: Uint8Array;
+  // Add other properties if needed
+};
+
 interface ImageUploadProps {
   form: UseFormReturnType<
-    {
-      inputData: never[];
-    },
-    (values: { inputData: never[] }) => {
-      inputData: never[];
-    }
+    { inputData: InputDataItem[] },
+    (values: { inputData: InputDataItem[] }) => { inputData: InputDataItem[] }
   >;
   name: string;
   loading: boolean;
@@ -28,7 +31,7 @@ function ImageUpload({ form, name, loading }: ImageUploadProps) {
       const reader = new FileReader();
 
       reader.onloadend = async () => {
-        const arrayBuffer: string | ArrayBuffer | null = reader.result;
+        const arrayBuffer: any = reader.result;
         const binaryData = new Uint8Array(arrayBuffer);
         const imageUrl = URL.createObjectURL(new Blob([binaryData]));
 

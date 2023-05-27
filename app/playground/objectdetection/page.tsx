@@ -26,6 +26,13 @@ type ImageWithRectanglesProps = {
   data: Item[];
 };
 
+type InputDataItem = {
+  url: string;
+  name: string;
+  binary: Uint8Array;
+  // Add other properties if needed
+};
+
 function ObjectDetection() {
   const [rectData, setRectData] = useState<Item[]>([]);
   const [imageDimensions, setImageDimensions] = useState({
@@ -39,9 +46,11 @@ function ObjectDetection() {
     inputData: Yup.array().min(1).required(),
   });
 
-  const form = useForm({
+  const form = useForm<{
+    inputData: InputDataItem[]; // Specify the type as InputDataItem[]
+  }>({
     initialValues: {
-      inputData: [],
+      inputData: [] as InputDataItem[],
     },
     validate: yupResolver(schemaValidate),
   });
@@ -124,6 +133,7 @@ function ObjectDetection() {
         <div className="col-span-6">
           <form onSubmit={form.onSubmit((values) => detectObject(values))}>
             <ImageUpload form={form} name="inputData" loading={apiLoading} />
+
             <p className="text-negative p2-regular-16">
               {form.errors.inputData}
             </p>
