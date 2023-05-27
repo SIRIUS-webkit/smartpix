@@ -44,6 +44,8 @@ module.exports = {
     },
     fontFamily: {
       lato: ["Lato", ...defaultTheme.fontFamily.sans],
+      inter: ["var(--font-inter)"],
+      fugaze: ["var(--font-fugaze_one)"],
     },
     extend: {
       backgroundImage: {

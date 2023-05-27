@@ -13,15 +13,37 @@ interface SideBarProps {
 
 function SideBar({ open, setOpen }: SideBarProps) {
   const Menus = [
-    { title: "Text To Image", src: "Chart_fill", activeText: "playground" },
-    { title: "Object Detection", src: "Chat", activeText: "objectdetection" },
+    {
+      title: "Text To Image",
+      src: "Chart_fill",
+      activeText: "texttoimage",
+      link: "/playground/texttoimage",
+    },
+    {
+      title: "Object Detection",
+      src: "Chat",
+      activeText: "objectdetection",
+      link: "/playground/objectdetection",
+    },
     {
       title: "Image Classification",
       src: "User",
-      activeText: "objectclassification",
+      activeText: "imageclassification",
+      link: "/playground/imageclassification",
     },
-    { title: "Model Traning", src: "Calendar", activeText: "modeltraining" },
-    { title: "Setting", src: "Calendar", activeText: "setting", gap: true },
+    {
+      title: "Model Traning",
+      src: "Calendar",
+      activeText: "modeltraining",
+      link: "/",
+    },
+    {
+      title: "Setting",
+      src: "Calendar",
+      activeText: "setting",
+      gap: true,
+      link: "/",
+    },
   ];
   const pathname: string = usePathname();
 
@@ -74,7 +96,7 @@ function SideBar({ open, setOpen }: SideBarProps) {
                 !open && "hidden"
               } origin-left duration-200 p2-regular-16`}
             >
-              {Menu.title}
+              <Link href={Menu.link}>{Menu.title}</Link>
             </span>
           </li>
         ))}

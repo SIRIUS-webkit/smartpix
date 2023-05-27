@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import "./globals.css";
-import { Lato } from "next/font/google";
+import { Lato, Fugaz_One } from "next/font/google";
 import Head from "next/head";
 import { usePathname } from "next/navigation";
 import Navbar from "@/components/Navbar";
@@ -11,7 +11,16 @@ import ScrollToTopButton from "@/components/ScrollToTopButton";
 import SideBar from "@/components/SideBar";
 import Footer from "@/components/Footer";
 
-const lato = Lato({ subsets: ["latin"], weight: ["400", "900", "700"] });
+const lato = Lato({
+  subsets: ["latin"],
+  weight: ["400", "900", "700"],
+  variable: "--font-lato",
+});
+const fugaze_one = Fugaz_One({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-fugaze_one",
+});
 
 export default function RootLayout({
   children,
@@ -27,7 +36,7 @@ export default function RootLayout({
         <title>SmartPix</title>
         <meta name="SmartPix" content="Ai created this app" />
       </Head>
-      <body className={lato.className}>
+      <body className={`${lato.variable} ${fugaze_one.variable} font-lato`}>
         <AuthContextProvider>
           {!pathname.includes("playground") ? (
             <>

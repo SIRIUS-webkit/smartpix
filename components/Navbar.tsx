@@ -34,7 +34,7 @@ export default function Navbar() {
         {/* logo part */}
 
         <Link href="/">
-          <h2>Smart Pix</h2>
+          <h2 className="font-fugaze">SmartPix</h2>
         </Link>
 
         {/* right part */}
@@ -58,7 +58,7 @@ export default function Navbar() {
               pathname === "/playground" ? "p2-bold-16" : "p2-regular-16"
             }`}
           >
-            <Link href="/playground">Playground</Link>
+            <Link href="/playground/texttoimage">Playground</Link>
           </li>
           {!user ? (
             <li>
