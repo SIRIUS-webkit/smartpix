@@ -49,15 +49,15 @@ function ImageUpload({ form, name, loading, previewText }: ImageUploadProps) {
     });
   };
 
-  const previews = files.map((file) => {
+  const previews = files.map((file, index) => {
     return (
-      <div className="flex flex-col space-y-2 max-w-[90%] mx-auto">
+      <div className="flex flex-col space-y-2 max-w-[90%] mx-auto" key={index}>
         <p className="p2-bold-16" key={file.name}>
           {file.name} {previewText}
         </p>
         <p className="p3-regular-14">
-          Immerse in SmartPix's AI artwork, explore the fusion of creativity and
-          technology.
+          Immerse in SmartPix&apos;s AI artwork, explore the fusion of
+          creativity and technology.
         </p>
       </div>
     );
