@@ -18,7 +18,7 @@ function Playground() {
     <div>
       <Title
         title="Text to Image Generator"
-        subTitle="Start creat with your ideas!"
+        subTitle="Visualize Your Ideas: Unlock the Power of Text-to-Image AI, Transform Words into Captivating Images!"
       />
       <TextToImage />
     </div>

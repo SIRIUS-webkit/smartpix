@@ -20,9 +20,10 @@ interface ImageUploadProps {
   >;
   name: string;
   loading: boolean;
+  previewText: string;
 }
 
-function ImageUpload({ form, name, loading }: ImageUploadProps) {
+function ImageUpload({ form, name, loading, previewText }: ImageUploadProps) {
   const [files, setFiles] = useState<FileWithPath[]>([]);
 
   const convertBase64 = (link: FileWithPath[]) => {
@@ -50,9 +51,15 @@ function ImageUpload({ form, name, loading }: ImageUploadProps) {
 
   const previews = files.map((file) => {
     return (
-      <p className="p2-bold-16" key={file.name}>
-        {file.name} was uploaded and ready to detect.
-      </p>
+      <div className="flex flex-col space-y-2 max-w-[90%] mx-auto">
+        <p className="p2-bold-16" key={file.name}>
+          {file.name} {previewText}
+        </p>
+        <p className="p3-regular-14">
+          Immerse in SmartPix's AI artwork, explore the fusion of creativity and
+          technology.
+        </p>
+      </div>
     );
   });
 
@@ -65,7 +72,7 @@ function ImageUpload({ form, name, loading }: ImageUploadProps) {
     <div>
       {files.length === 0 ? (
         <Dropzone
-          accept={IMAGE_MIME_TYPE}
+          accept={{ "image/*": [] }}
           onDrop={(acceptedFiles) => {
             setFiles(acceptedFiles);
             convertBase64(acceptedFiles);

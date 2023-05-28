@@ -1,6 +1,4 @@
 "use client";
-/* eslint-disable */
-
 import React, { useState, useEffect } from "react";
 import * as Yup from "yup";
 import { useForm, yupResolver } from "@mantine/form";
@@ -34,15 +32,11 @@ type InputDataItem = {
   // Add other properties if needed
 };
 
-function ObjectDetection() {
+function ImageCalssification() {
   const { scrollIntoView, targetRef } = useScrollIntoView<HTMLDivElement>({
     offset: 60,
   });
   const [rectData, setRectData] = useState<Item[]>([]);
-  const [imageDimensions, setImageDimensions] = useState({
-    width: 0,
-    height: 0,
-  });
 
   const [apiLoading, setApiLoading] = useState(false);
 
@@ -59,11 +53,11 @@ function ObjectDetection() {
     validate: yupResolver(schemaValidate),
   });
 
-  const detectObject = async (data: any) => {
+  const classifyObject = async (data: any) => {
     setRectData([]);
     setApiLoading(true);
     const res = await fetch(
-      `${process.env.texttoimageAPI}/${process.env.objectdetectionMODEL}`,
+      `${process.env.texttoimageAPI}/${process.env.imageclassificationMODEL}`,
       {
         headers: {
           "Content-Type": "image/*",
@@ -76,77 +70,44 @@ function ObjectDetection() {
 
     if (res.status) {
       const result = await res.json();
+      const randColor = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+
       const updatedResult = result?.map((item: Item) => ({
         ...item,
-        color: `#${Math.floor(Math.random() * 16777215).toString(16)}`,
+        color: randColor,
       }));
       scrollIntoView({
         alignment: "center",
       });
       setRectData(updatedResult);
-
-      updateImageDimensions(data.inputData[0].url);
     }
     setApiLoading(false);
   };
 
-  const updateImageDimensions = (imageUrl: string) => {
-    const img = new Image();
-    img.src = imageUrl;
-    img.onload = () => {
-      setImageDimensions({ width: img.width, height: img.height });
-    };
-  };
-
-  const drawRectangles = (data: Item[]) => {
-    return data.map((item, index) => {
-      const { xmin, ymin, xmax, ymax } = item.box;
-      const width = xmax - xmin;
-      const height = ymax - ymin;
-
-      return (
-        <rect
-          key={index}
-          x={xmin}
-          y={ymin}
-          width={width}
-          height={height}
-          stroke={item.color}
-          strokeWidth="3"
-          fill="transparent"
-        />
-      );
-    });
-  };
-
   useEffect(() => {
-    if (form.values.inputData.length > 0) {
-      updateImageDimensions(form.values.inputData[0].url);
-    }
     setRectData([]);
   }, [form.values.inputData]);
 
   const getWidth = (sc: number): string => {
-    const toFix: number = Number(sc.toFixed(2));
+    const toFix: number = Number(sc.toFixed(4));
     const pec: string = toFix * 100 + "%";
 
     return pec;
   };
-
   return (
     <div>
       <Title
-        title="Object Detection"
-        subTitle="See Beyond Limits: Embrace Object Detection AI, Unleash Precision in Visual Recognition!"
+        title="Image Classification"
+        subTitle="Unleash Visual Insight: Harness Image Classification AI, Decode the World through Pixels!"
       />
       <div className="grid grid-cols-12 gap-[50px]">
         <div className="col-span-6">
-          <form onSubmit={form.onSubmit((values) => detectObject(values))}>
+          <form onSubmit={form.onSubmit((values) => classifyObject(values))}>
             <ImageUpload
               form={form}
               name="inputData"
               loading={apiLoading}
-              previewText="was uploaded and ready to detect."
+              previewText="was uploaded and ready to classify."
             />
 
             <p className="text-negative p2-regular-16">
@@ -158,7 +119,7 @@ function ObjectDetection() {
                 className="primary-button"
                 disabled={apiLoading}
               >
-                Detect
+                Classify
               </button>
             </div>
           </form>
@@ -179,13 +140,6 @@ function ObjectDetection() {
                         src={form.values.inputData[0].url}
                       />
                     </div>
-                    <svg
-                      className="absolute top-0 left-0"
-                      viewBox={`0 0 ${imageDimensions.width} ${imageDimensions.height}`}
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      {drawRectangles(rectData)}
-                    </svg>
                   </div>
                 </div>
                 <div
@@ -220,4 +174,4 @@ function ObjectDetection() {
   );
 }
 
-export default ObjectDetection;
+export default ImageCalssification;
