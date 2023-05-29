@@ -274,3 +274,6 @@ body {
     transform: scale(1);
   }
 }
+.mantine-Switch-track {
+  background-color: #2c3349;
+}

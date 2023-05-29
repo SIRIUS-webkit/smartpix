@@ -20,6 +20,7 @@ function Playground() {
         title="Text to Image Generator"
         subTitle="Visualize Your Ideas: Unlock the Power of Text-to-Image AI, Transform Words into Captivating Images!"
       />
+
       <TextToImage />
     </div>
   );

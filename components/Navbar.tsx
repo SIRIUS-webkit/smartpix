@@ -51,7 +51,7 @@ export default function Navbar() {
               pathname === "/pricing" ? "p2-bold-16" : "p2-regular-16"
             }`}
           >
-            Pricing
+            <Link href="/pricing">Pricing</Link>
           </li>
           <li
             className={`${

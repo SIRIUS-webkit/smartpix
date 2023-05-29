@@ -99,38 +99,50 @@ function SideBar({ open, setOpen }: SideBarProps) {
               !open && "scale-0 hidden"
             }`}
           >
-            Smart
+            SmartPix
           </h3>
         </Link>
       </div>
-      <ul className={`pt-6 ${open ? "mt-0" : "mt-9"} `}>
-        {Menus.map((Menu, index) => (
+      <ul
+        className={` ${
+          open ? "mt-0" : "mt-9"
+        } pt-9 flex flex-col gap-4 relative`}
+      >
+        {Menus?.map((menu, i) => (
           <li
-            key={index}
-            className={`relative flex mt-2 rounded-md p2-regular-16 cursor-pointer p-[10px] hover:bg-main-gradient hover:text-white items-center gap-x-4 
-               ${
-                 pathname.includes(Menu.activeText)
-                   ? "bg-main-gradient text-white"
-                   : null
-               }`}
+            key={i}
+            className={`group flex items-center gap-3.5 cursor-pointer p-[10px] hover:bg-main-gradient hover:text-white rounded-md 
+            ${
+              pathname.includes(menu.activeText)
+                ? "bg-main-gradient text-white"
+                : null
+            }
+            `}
           >
-            <Tooltip label={Menu.tooltext} withArrow offset={20}>
-              <Link href={Menu.link}>{Menu.icon}</Link>
-            </Tooltip>
-
-            <span
-              className={`${
-                !open && "hidden"
-              } origin-left duration-200 p2-regular-16`}
+            <div>{menu.icon}</div>
+            <p
+              // style={{
+              //   transitionDelay: `${i + 1}00ms`,
+              // }}
+              className={`whitespace-pre p2-regular-16  ${
+                !open && "opacity-0 overflow-hidden"
+              }`}
             >
-              {Menu.isPremiun ? (
-                <span>{Menu.title}</span>
+              {menu.isPremiun ? (
+                <span>{menu.title}</span>
               ) : (
-                <Link href={Menu.link}>{Menu.title}</Link>
+                <Link href={menu.link}>{menu.title}</Link>
               )}
-            </span>
-            {Menu.isPremiun && open ? (
-              <div className="absolute left-[160px]">
+            </p>
+            {menu.isPremiun ? (
+              <div
+                style={{
+                  transitionDelay: !open ? "0ms" : "400ms",
+                }}
+                className={`${
+                  !open && "opacity-0 overflow-hidden"
+                } absolute left-[160px]`}
+              >
                 <Badge size="xs" radius="xs" variant="filled">
                   PREMIUM
                 </Badge>
@@ -139,7 +151,7 @@ function SideBar({ open, setOpen }: SideBarProps) {
           </li>
         ))}
       </ul>
-      <div className="absolute flex items-center space-x-3 bottom-0 left-0 bg-main-gradient px-5 py-5 w-full">
+      <div className="absolute flex items-center space-x-3 bottom-0 left-0 bg-main-gradient px-6 py-5 w-full">
         {user?.photoURL ? (
           <div className="flex space-x-9">
             <p className="flex space-x-3 items-center">
@@ -152,14 +164,16 @@ function SideBar({ open, setOpen }: SideBarProps) {
               />
               <span
                 className={`${
-                  !open ? "hidden" : "scale-100"
-                } origin-left duration-200 text-white`}
+                  !open && "opacity-0 overflow-hidden"
+                } absolute left-[54px] duration-200 text-white`}
               >
                 {user?.displayName}
               </span>
             </p>
             <button
-              className={`${!open && "hidden"} p2-regular-16 text-white`}
+              className={`${
+                !open && "hidden"
+              } p2-regular-16 text-white absolute left-[180px] top-5`}
               onClick={logout}
             >
               Logout
@@ -168,7 +182,11 @@ function SideBar({ open, setOpen }: SideBarProps) {
         ) : (
           <>
             <BsPersonCircle className="text-[20px] text-white" />
-            <p className="p2-regular-16 text-white">
+            <p
+              className={`${
+                !open && "opacity-0 overflow-hidden"
+              } absolute left-12 p2-regular-16 text-white`}
+            >
               <Link href="/authen/login">Sign In</Link>
             </p>
           </>

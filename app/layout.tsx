@@ -47,7 +47,7 @@ export default function RootLayout({
               <SideBar open={open} setOpen={setOpen} />
               <div
                 className={`h-screen ${
-                  open ? "ml-[320px]" : "ml-16"
+                  open ? "ml-[320px]" : "ml-28"
                 } mr-9 duration-300 flex-1 p-7`}
               >
                 {children}
