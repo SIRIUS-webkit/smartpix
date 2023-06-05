@@ -47,15 +47,15 @@ export default function RootLayout({
               <SideBar open={open} setOpen={setOpen} />
               <div
                 className={`h-screen ${
-                  open ? "ml-[320px]" : "ml-28"
-                } mr-9 duration-300 flex-1 p-7`}
+                  open ? "ml-[320px]" : "mdmin1050:ml-28 ml-[5em]"
+                } mdmin1050:mr-9 mr-0 duration-300 flex-1 p-7`}
               >
                 {children}
               </div>
             </main>
           )}
         </AuthContextProvider>
-        <ScrollToTopButton />
+        {!pathname.includes("playground") ? <ScrollToTopButton /> : null}
       </body>
     </html>
   );

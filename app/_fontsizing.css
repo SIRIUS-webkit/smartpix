@@ -1,9 +1,9 @@
 /* // global font size and style */
 /* // font-size for mobile */
 h1 {
-  font-size: 56px;
+  font-size: 46px !important;
   font-weight: 700;
-  line-height: 74px;
+  line-height: 64px !important;
 }
 h2 {
   font-size: 40px;

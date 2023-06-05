@@ -4,6 +4,7 @@ import React, { Dispatch, SetStateAction, useContext } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
+
 import { usePathname } from "next/navigation";
 import { MdOutlineArrowBackIos } from "react-icons/md";
 import { HiOutlineChevronRight } from "react-icons/hi";
@@ -12,7 +13,7 @@ import { FaRegObjectGroup } from "react-icons/fa";
 import { GiArtificialHive } from "react-icons/gi";
 import { MdModelTraining } from "react-icons/md";
 import { BsPersonCircle } from "react-icons/bs";
-import { Badge, Tooltip } from "@mantine/core";
+import { Badge } from "@mantine/core";
 import { AuthContext } from "@/utils/AuthContext";
 import { getAuth } from "firebase/auth";
 import initFirebaseApp from "@/utils/firebase/config";
@@ -95,7 +96,7 @@ function SideBar({ open, setOpen }: SideBarProps) {
       <div className="flex gap-x-4 items-center">
         <Link href="/">
           <h3
-            className={`origin-left font-bold duration-200 ${
+            className={`origin-left font-bold font-fugaze duration-200 ${
               !open && "scale-0 hidden"
             }`}
           >
@@ -119,7 +120,9 @@ function SideBar({ open, setOpen }: SideBarProps) {
             }
             `}
           >
-            <div>{menu.icon}</div>
+            <div>
+              <Link href={menu.link}>{menu.icon}</Link>
+            </div>
             <p
               // style={{
               //   transitionDelay: `${i + 1}00ms`,
@@ -173,7 +176,7 @@ function SideBar({ open, setOpen }: SideBarProps) {
             <button
               className={`${
                 !open && "hidden"
-              } p2-regular-16 text-white absolute left-[180px] top-5`}
+              } p2-regular-16 text-white absolute left-[180px] top-[23px]`}
               onClick={logout}
             >
               Logout

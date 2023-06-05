@@ -4,21 +4,24 @@ const showcaseimages = [
     url: "showcase_01.jpg",
     prompt: "A cat sleeping on a windowsill",
     authorUrl: "",
-    time: "2023-05-01 13:29",
+    time: "2023-06-05 13:29",
+    name: "Emily Johnson",
   },
   {
     id: 2,
     url: "showcase_02.jpg",
     prompt: "A mountain range at sunset",
     authorUrl: "",
-    time: "2023-05-04 9:29",
+    time: "2023-06-02 9:29",
+    name: "Daniel Martinez",
   },
   {
     id: 3,
     url: "showcase_03.jpg",
     prompt: "A bustling city street at night",
     authorUrl: "",
-    time: "2023-04-11 10:29",
+    time: "2023-05-11 10:29",
+    name: "Sophia Thompson",
   },
 
   {
@@ -26,7 +29,8 @@ const showcaseimages = [
     url: "showcase_06.jpg",
     prompt: "A colorful hot air balloon festival",
     authorUrl: "",
-    time: "2023-04-25 5:19",
+    time: "2023-06-01 5:19",
+    name: "Ethan Clark",
   },
   {
     id: 16,
@@ -34,7 +38,8 @@ const showcaseimages = [
     prompt:
       "An Amazonian warrior woman, adorned in a cyberpunk fashion, wielding sophisticated weapons,",
     authorUrl: "",
-    time: "2023-03-21 8:09",
+    time: "2023-04-21 8:09",
+    name: "William Turner",
   },
   {
     id: 17,
@@ -43,6 +48,7 @@ const showcaseimages = [
       "beautiful, black women, 1990s aesthetic clothing style, colorful, artistic by anime art",
     authorUrl: "",
     time: "2023-04-25 5:19",
+    name: "Lucas Cooper",
   },
   {
     id: 18,
@@ -51,13 +57,15 @@ const showcaseimages = [
       "michelle pfeiffer's catwoman, vantablack, leather, gorgeous and stunning, illustration by adam",
     authorUrl: "",
     time: "2023-04-25 5:19",
+    name: "Lucas Cooper",
   },
   {
     id: 7,
     url: "showcase_07.jpg",
     prompt: "A majestic castle on a hilltop",
     authorUrl: "",
-    time: "2023-04-25 5:19",
+    time: "2023-05-25 5:19",
+    name: "Mia Ramirez",
   },
   {
     id: 10,
@@ -65,6 +73,7 @@ const showcaseimages = [
     prompt: "A futuristic city with flying cars and towering skyscrapers",
     authorUrl: "",
     time: "2023-04-25 5:19",
+    name: "Ava Robinson",
   },
   {
     id: 11,
@@ -72,7 +81,7 @@ const showcaseimages = [
     prompt:
       "Edgy Racoon, Street Style-inspired, poster-like, contrasting colors",
     authorUrl: "",
-    time: "2023-04-25 5:19",
+    time: "2023-05-25 5:19",
   },
   {
     id: 8,
@@ -80,6 +89,7 @@ const showcaseimages = [
     prompt: "A person standing on a beach at sunrise",
     authorUrl: "",
     time: "2023-04-25 5:19",
+    name: "Mia Ramirez",
   },
   {
     id: 9,
@@ -87,6 +97,7 @@ const showcaseimages = [
     prompt: "A cozy cabin in the woods",
     authorUrl: "",
     time: "2023-04-25 5:19",
+    name: "Abigail Carter",
   },
   {
     id: 19,
@@ -94,7 +105,8 @@ const showcaseimages = [
     prompt:
       "In the night, the edgy woman walking in the city with blue hair and wearing a leather jacket in style",
     authorUrl: "",
-    time: "2023-04-25 5:19",
+    time: "2023-05-25 5:19",
+    name: "Alexander Young",
   },
   {
     id: 20,
@@ -103,6 +115,7 @@ const showcaseimages = [
       "Vogue photoshoot of Robert Downey jr. on white background in Wes Anderson style, hyperrealistic",
     authorUrl: "",
     time: "2023-04-25 5:19",
+    name: "Alexander Young",
   },
 
   {
@@ -111,6 +124,7 @@ const showcaseimages = [
     prompt: "mischievous cat as a pixar character",
     authorUrl: "",
     time: "2023-04-25 5:19",
+    name: "Abigail Carter",
   },
   {
     id: 13,
@@ -119,20 +133,23 @@ const showcaseimages = [
       "A long-haired girl character, black wire glasses, Piercing eyes,Wearing a white turtleneck, 3d style,light",
     authorUrl: "",
     time: "2023-04-25 5:19",
+    name: "Abigail Carter",
   },
   {
     id: 4,
     url: "showcase_04.jpg",
     prompt: "A deserted island with a single palm tree",
     authorUrl: "",
-    time: "2023-04-25 5:19",
+    time: "2023-02-25 5:19",
+    name: "Ava Robinson",
   },
   {
     id: 5,
     url: "showcase_05.jpg",
     prompt: "A serene lake surrounded by trees and mountains",
     authorUrl: "",
-    time: "2023-04-25 5:19",
+    time: "2023-03-25 5:19",
+    name: "Amelia Nelson",
   },
   {
     id: 14,
@@ -141,6 +158,7 @@ const showcaseimages = [
       "stunning attractive lithe female model, white short gauzy dress, sleeveless, long shapely legs",
     authorUrl: "",
     time: "2023-04-25 5:19",
+    name: "Ava Robinson",
   },
   {
     id: 15,
@@ -149,6 +167,7 @@ const showcaseimages = [
       "Photography of Sushi on Sleek Black Background, dark palette photography, 100mm, front shot",
     authorUrl: "",
     time: "2023-04-25 5:19",
+    name: "Alexander Young",
   },
 ];
 

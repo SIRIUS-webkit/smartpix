@@ -85,9 +85,9 @@ function TextToImage() {
 
   return (
     <>
-      <div className="grid grid-cols-12 gap-[50px]">
+      <div className="grid grid-cols-12 mdmin1050:gap-[50px] gap-0">
         <div
-          className={`col-span-6 w-full ${
+          className={`mdmin1050:col-span-6 col-span-12 w-full ${
             apiLoading ? "pointer-events-none" : "pointer-events-auto"
           }`}
         >
@@ -116,7 +116,7 @@ function TextToImage() {
                   {themeStyleImages().map((item: propsThemsImage) => (
                     <div
                       key={item.id}
-                      className="w-full text-center  col-span-3 cursor-pointer relative rounded-md"
+                      className="w-full text-center mdmin720:col-span-3 col-span-6 cursor-pointer relative rounded-md"
                     >
                       <Indicator
                         inline
@@ -156,11 +156,11 @@ function TextToImage() {
             </div>
           </form>
         </div>
-        <div className="col-span-6">
+        <div className="mdmin1050:col-span-6 col-span-12">
           <p className="p2-bold-16 font-bold">Art Preview</p>
           <div className="grid grid-cols-12 gap-5 mt-6">
             {imageUrl ? (
-              <div className="relative w-full h-[200px] col-span-6 rounded-lg">
+              <div className="relative w-full h-[200px] mdmin720:col-span-6 col-span-12 rounded-lg">
                 <Image
                   src={imageUrl}
                   alt="result"
@@ -184,7 +184,7 @@ function TextToImage() {
                 </div>
               </div>
             ) : (
-              <div className="w-full h-[200px]  bg-main-gradient col-span-6 rounded-lg flex justify-center items-center">
+              <div className="w-full h-[200px]  bg-main-gradient mdmin720:col-span-6 col-span-12 rounded-lg flex justify-center items-center">
                 {apiLoading ? (
                   <div className="sk-circle">
                     <div className="sk-circle1 sk-child"></div>
@@ -204,15 +204,15 @@ function TextToImage() {
               </div>
             )}
 
-            <div className="w-full h-[200px] bg-main-gradient col-span-6 rounded-lg flex flex-col justify-center items-center">
+            <div className="w-full h-[200px] bg-main-gradient mdmin720:col-span-6 col-span-12 rounded-lg flex flex-col justify-center items-center">
               <IoMdLock className="text-white" />
               <p className="p3-bold-14 text-white">PREMIUM</p>
             </div>
-            <div className="w-full h-[200px] bg-main-gradient col-span-6 rounded-lg flex flex-col justify-center items-center">
+            <div className="w-full h-[200px] bg-main-gradient mdmin720:col-span-6 col-span-12 rounded-lg flex flex-col justify-center items-center">
               <IoMdLock className="text-white" />
               <p className="p3-bold-14 text-white">PREMIUM</p>
             </div>
-            <div className="w-full h-[200px] bg-main-gradient col-span-6 rounded-lg flex flex-col justify-center items-center">
+            <div className="w-full h-[200px] bg-main-gradient mdmin720:col-span-6 col-span-12 rounded-lg flex flex-col justify-center items-center">
               <IoMdLock className="text-white" />
               <p className="p3-bold-14 text-white">PREMIUM</p>
             </div>

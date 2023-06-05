@@ -54,6 +54,12 @@ module.exports = {
         "main-gradient":
           "linear-gradient(90deg, hsla(228, 17%, 53%, 1) 0%, hsla(229, 28%, 88%, 1) 100%)",
       },
+      screens: {
+        mdmin1050: { min: "1050px" },
+        mdmin960: { min: "960px" },
+        mdmax800: { max: "800px" },
+        mdmin720: { min: "720px" },
+      },
     },
   },
   plugins: [],

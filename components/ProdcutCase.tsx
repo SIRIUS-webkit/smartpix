@@ -1,13 +1,16 @@
 "use client";
 
 import React from "react";
+import { useRouter } from "next/navigation";
 import { Image } from "@mantine/core";
 
 function ProdcutCase() {
+  const router = useRouter();
+
   return (
     <div>
-      <div className="grid grid-cols-2 gap-5 pt-[8em] items-center">
-        <div className="flex flex-col space-y-5">
+      <div className="grid grid-cols-12 gap-5 mdmin1050:pt-[8em] pt-[3em] items-center">
+        <div className="mdmin1050:col-span-6 col-span-12 flex flex-col space-y-5">
           <h3 className="font-bold">Stoke the fire of your imagination</h3>
           <p className="p2-regular-16">
             Our groundbreaking model surpasses traditional{" "}
@@ -17,49 +20,56 @@ function ProdcutCase() {
             create breathtaking artwork effortlessly and instantly.
           </p>
           <div>
-            <button className="primary-button">Generate Now</button>
+            <button
+              className="primary-button"
+              type="button"
+              onClick={() => router.push("/playground/texttoimage")}
+            >
+              Generate Now
+            </button>
           </div>
         </div>
-        <div>
-          <div className="max-w-[80%] ml-auto">
-            <Image
-              src="/assets/themestyle/comic.png"
-              alt="text-image"
-              radius="md"
-              height={350}
-            />
+        <div className="mdmin1050:col-span-6 col-span-12 mdmin1050:mt-0 mt-[2em]">
+          <div className="mdmin1050:max-w-[80%] sm:max-w-[40%] max-w-full mdmin1050:ml-[100px] mx-auto bg-white rounded-md">
+            <Image src="/assets/home/textto.jpg" alt="text-image" radius="md" />
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-2 gap-5 pt-[8em] items-center">
-        <div>
-          <div className="max-w-[80%] mr-auto">
+      <div className="grid grid-cols-12 gap-5 mdmin1050:pt-[8em] pt-[3em] items-center">
+        <div className="mdmin1050:col-span-6 col-span-12 mdmin1050:order-1 order-2 mdmin1050:mt-0 mt-[2em]">
+          <div className="mdmin1050:max-w-[80%] sm:max-w-[40%] max-w-full mdmin1050:mr-[100px] mx-auto bg-white rounded-md">
             <Image
-              src="/assets/themestyle/comic.png"
+              src="/assets/home/objectdetect.png"
               alt="text-image"
               radius="md"
-              height={350}
             />
           </div>
         </div>
-        <div className="flex flex-col space-y-5">
+        <div className="mdmin1050:col-span-6 col-span-12 flex flex-col space-y-5 mdmin1050:order-2 order-1">
           <h3 className="font-bold">
             Illuminate your visuals with AI brilliance
           </h3>
           <p className="p2-regular-16">
             Experience the next level of image analysis with our advanced
-            AI-powered image classification and object detection features.
-            Unlock valuable insights, streamline processes, and captivate your
-            audience with precise identification and comprehensive understanding
-            of visual content.
+            AI-powered image classification and object detection features with{" "}
+            <span className="gradient-text">DETER and CVL models</span>. Unlock
+            valuable insights, streamline processes, and captivate your audience
+            with precise identification and comprehensive understanding of
+            visual content.
           </p>
           <div>
-            <button className="primary-button">Generate Now</button>
+            <button
+              className="primary-button"
+              type="button"
+              onClick={() => router.push("/playground/objectdetection")}
+            >
+              Generate Now
+            </button>
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-2 gap-5 pt-[8em] items-center">
-        <div className="flex flex-col space-y-5">
+      <div className="grid grid-cols-12 gap-5 mdmin1050:pt-[8em] pt-[3em] items-center">
+        <div className="mdmin1050:col-span-6 col-span-12 flex flex-col space-y-5">
           <h3 className="font-bold">
             Empower your data with AI model training
           </h3>
@@ -74,14 +84,9 @@ function ProdcutCase() {
             <button className="primary-button">Generate Now</button>
           </div>
         </div>
-        <div>
-          <div className="max-w-[80%] ml-auto">
-            <Image
-              src="/assets/themestyle/comic.png"
-              alt="text-image"
-              radius="md"
-              height={350}
-            />
+        <div className="mdmin1050:col-span-6 col-span-12 mdmin1050:mt-0 mt-[2em]">
+          <div className="mdmin1050:max-w-[80%] sm:max-w-[40%] max-w-full mdmin1050:ml-[100px] mx-auto bg-white rounded-md">
+            <Image src="/assets/home/model.jpg" alt="text-image" radius="md" />
           </div>
         </div>
       </div>

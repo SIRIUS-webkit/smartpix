@@ -96,7 +96,7 @@ function ImageUpload({ form, name, loading, previewText }: ImageUploadProps) {
             {previews}
             {!loading ? (
               <div
-                className="absolute bottom-3 right-5 flex items-center cursor-pointer"
+                className="absolute mdmin1050:bottom-3 bottom-0 right-5 flex items-center cursor-pointer"
                 onClick={removeImage}
               >
                 <TiDelete className="text-[25px] text-negative" />

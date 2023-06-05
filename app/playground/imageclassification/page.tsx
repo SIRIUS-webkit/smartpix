@@ -100,8 +100,8 @@ function ImageCalssification() {
         title="Image Classification"
         subTitle="Unleash Visual Insight: Harness Image Classification AI, Decode the World through Pixels!"
       />
-      <div className="grid grid-cols-12 gap-[50px]">
-        <div className="col-span-6">
+      <div className="grid grid-cols-12 mdmin1050:gap-[50px] gap-0">
+        <div className="mdmin1050:col-span-6 col-span-12">
           <form onSubmit={form.onSubmit((values) => classifyObject(values))}>
             <ImageUpload
               form={form}
@@ -124,7 +124,7 @@ function ImageCalssification() {
             </div>
           </form>
         </div>
-        <div className="col-span-6">
+        <div className="mdmin1050:col-span-6 col-span-12">
           <div>
             {form.values.inputData.length === 0 ? (
               <div className="w-full h-[300px] bg-main-gradient rounded-md"></div>
@@ -149,7 +149,7 @@ function ImageCalssification() {
                   {rectData.map((innerItem) => (
                     <div
                       key={innerItem.color}
-                      className="flex items-start justify-between font-mono text-xs leading-none animate__animated animate__fadeIn transition duration-200 ease-in-out false"
+                      className="flex items-start justify-between font-lato text-base leading-none animate__animated animate__fadeIn transition duration-200 ease-in-out false"
                     >
                       <div className="flex-1">
                         <div

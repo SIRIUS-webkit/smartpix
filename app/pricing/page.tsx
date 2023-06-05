@@ -7,7 +7,7 @@ import { AiFillCheckCircle } from "react-icons/ai";
 function Pricing() {
   const [checked, setChecked] = useState(false);
   return (
-    <div className="py-32 max-w-[1100px] mx-auto">
+    <div className="mdmin1050:py-32 py-16 max-w-[1100px] mdmin1050:mx-auto mx-5">
       <div>
         <h2 className="text-center font-[900]">Choose your plan</h2>
         <p className="p2-regular-16  mt-4 text-center">
@@ -30,7 +30,7 @@ function Pricing() {
         </div>
       </div>
       <div className="grid grid-cols-12 gap-5 mt-[6em]">
-        <div className="col-span-4 relative bg-main-bg-gradient px-6 py-9 rounded-md">
+        <div className="mdmin960:!col-span-4 mdmin720:col-span-6 col-span-12 relative bg-main-bg-gradient px-6 py-9 rounded-md">
           <p className="p2-bold-16">Supporter</p>
           <div className="flex items-end my-[3em]">
             <h2 className="font-bold">${checked ? "5" : "6"}</h2>
@@ -62,7 +62,7 @@ function Pricing() {
             Upgrade to Supporter
           </button>
         </div>
-        <div className="relative col-span-4 bg-main-bg-gradient px-6 py-9 rounded-md">
+        <div className="relative mdmin960:!col-span-4 mdmin720:col-span-6 col-span-12 bg-main-bg-gradient px-6 py-9 rounded-md">
           <p className="p2-bold-16">Professional</p>
           <div className="flex items-end my-[3em]">
             <h2 className="font-bold">${checked ? "20" : "24"}</h2>
@@ -106,7 +106,7 @@ function Pricing() {
             Upgrade to Professional
           </button>
         </div>
-        <div className="relative col-span-4 bg-main-bg-gradient px-6 py-9 rounded-md">
+        <div className="relative mdmin960:!col-span-4 mdmin720:col-span-6 col-span-12 bg-main-bg-gradient px-6 py-9 rounded-md">
           <p className="p2-bold-16">Enterprise</p>
           <div className="flex items-end my-[3em]">
             <h2 className="font-bold">Custom</h2>
