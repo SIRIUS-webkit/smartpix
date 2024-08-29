@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server";
 type Props = {
-  prompt: string;
+  inputs: string;
 };
 export async function POST(request: Request) {
   const data: Props = await request.json();
-  if (!data.prompt)
+  if (!data.inputs)
     return NextResponse.json({ message: "Prompt is required!" });
 
   const res = await fetch(
@@ -15,7 +15,7 @@ export async function POST(request: Request) {
         "Content-Type": "application/json",
         Authorization: `Bearer ${process.env.huggingTOKEN}`,
       },
-      body: JSON.stringify(data.prompt),
+      body: JSON.stringify(data.inputs),
     }
   );
 

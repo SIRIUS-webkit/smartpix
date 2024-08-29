@@ -45,7 +45,7 @@ function TextToImage() {
         "Content-Type": "application/json",
         Authorization: `Bearer ${process.env.huggingTOKEN}`,
       },
-      body: JSON.stringify({ prompt: data }),
+      body: JSON.stringify({ inputs: data }),
     });
     const result = await res.json();
     if (res.status) {

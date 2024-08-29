@@ -60,7 +60,7 @@ export default function Navbar() {
               pathname === "/playground" ? "p2-bold-16" : "p2-regular-16"
             }`}
           >
-            <Link href="/playground/texttoimage">Playground</Link>
+            <Link href="/playground/text-to-image">Playground</Link>
           </li>
           {!user ? (
             <li>
