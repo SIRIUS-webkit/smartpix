@@ -6,6 +6,7 @@ import { LoadingOverlay } from "@mantine/core";
 import { useScrollIntoView } from "@mantine/hooks";
 import Title from "@/components/Title";
 import ImageUpload from "@/components/ImageUpload";
+import { prefetchModel } from "@/utils/common";
 
 type Box = {
   xmin: number;
@@ -56,33 +57,50 @@ function ImageCalssification() {
   const classifyObject = async (data: any) => {
     setRectData([]);
     setApiLoading(true);
-    const res = await fetch(
-      `${process.env.texttoimageAPI}/${process.env.imageclassificationMODEL}`,
-      {
-        headers: {
-          "Content-Type": "image/*",
-          Authorization: `Bearer ${process.env.huggingTOKEN}`,
-        },
-        method: "POST",
-        body: data.inputData[0].binary,
+
+    try {
+      const res = await fetch(
+        `${process.env.texttoimageAPI}/${process.env.imageclassificationMODEL}`,
+        {
+          headers: {
+            "Content-Type": "image/*",
+            Authorization: `Bearer ${process.env.huggingTOKEN}`,
+          },
+          method: "POST",
+          body: data.inputData[0].binary,
+        }
+      );
+
+      if (res.ok) {
+        const result = await res.json();
+        const randColor = `#${Math.floor(Math.random() * 16777215).toString(
+          16
+        )}`;
+
+        const updatedResult = result?.map((item: Item) => ({
+          ...item,
+          color: randColor,
+        }));
+
+        scrollIntoView({
+          alignment: "center",
+        });
+        setRectData(updatedResult);
+      } else {
+        console.error(`Error: ${res.status}`);
       }
-    );
-
-    if (res.status) {
-      const result = await res.json();
-      const randColor = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
-
-      const updatedResult = result?.map((item: Item) => ({
-        ...item,
-        color: randColor,
-      }));
-      scrollIntoView({
-        alignment: "center",
-      });
-      setRectData(updatedResult);
+    } catch (error) {
+      console.error("Error during classification:", error);
     }
+
     setApiLoading(false);
   };
+
+  useEffect(() => {
+    prefetchModel(
+      `${process.env.texttoimageAPI}/${process.env.imageclassificationMODEL}`
+    );
+  }, []);
 
   useEffect(() => {
     setRectData([]);

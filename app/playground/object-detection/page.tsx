@@ -8,6 +8,7 @@ import { LoadingOverlay } from "@mantine/core";
 import { useScrollIntoView } from "@mantine/hooks";
 import Title from "@/components/Title";
 import ImageUpload from "@/components/ImageUpload";
+import { prefetchModel } from "@/utils/common";
 
 type Box = {
   xmin: number;
@@ -118,6 +119,12 @@ function ObjectDetection() {
       );
     });
   };
+
+  useEffect(() => {
+    prefetchModel(
+      `${process.env.texttoimageAPI}/${process.env.objectdetectionMODEL}`
+    );
+  }, []);
 
   useEffect(() => {
     if (form.values.inputData.length > 0) {

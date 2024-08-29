@@ -76,3 +76,21 @@ export function themeStyleImages() {
   ];
   return images;
 }
+
+// src/utils/apiUtils.ts
+
+export const prefetchModel = async (model_path) => {
+  try {
+    const res = await fetch(model_path, {
+      headers: {
+        Authorization: `Bearer ${process.env.huggingTOKEN}`,
+      },
+      method: "GET",
+    });
+
+    // Optional: Add a delay to ensure the model is downloaded
+    await new Promise((resolve) => setTimeout(resolve, 5000));
+  } catch (error) {
+    console.error("Error prefetching the model:", error);
+  }
+};

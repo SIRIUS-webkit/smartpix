@@ -1,13 +1,22 @@
 "use client";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { AuthContext } from "@/utils/AuthContext";
 import TextToImage from "@/components/TextToImage";
 import Title from "@/components/Title";
+import { prefetchModel } from "@/utils/common";
 
 function Playground() {
   const router = useRouter();
   const { user }: any = useContext(AuthContext);
+
+  useEffect(() => {
+    if (user) {
+      prefetchModel(
+        `${process.env.texttoimageAPI}/${process.env.texttoimageMODEL}`
+      );
+    }
+  }, []);
 
   return (
     <div>
