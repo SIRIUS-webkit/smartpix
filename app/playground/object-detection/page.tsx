@@ -5,10 +5,11 @@ import React, { useState, useEffect } from "react";
 import * as Yup from "yup";
 import { useForm, yupResolver } from "@mantine/form";
 import { LoadingOverlay } from "@mantine/core";
-import { useScrollIntoView } from "@mantine/hooks";
+import { useDisclosure, useScrollIntoView } from "@mantine/hooks";
 import Title from "@/components/Title";
 import ImageUpload from "@/components/ImageUpload";
 import { prefetchModel } from "@/utils/common";
+import ModalLoading from "@/components/ModalLoading";
 
 type Box = {
   xmin: number;
@@ -44,7 +45,7 @@ function ObjectDetection() {
     width: 0,
     height: 0,
   });
-
+  const [opened, { open, close }] = useDisclosure(false);
   const [apiLoading, setApiLoading] = useState(false);
 
   const schemaValidate = Yup.object().shape({
@@ -74,6 +75,11 @@ function ObjectDetection() {
         body: data.inputData[0].binary,
       }
     );
+
+    if (res.status === 503) {
+      open();
+      setApiLoading(false);
+    }
 
     if (res.status) {
       const result = await res.json();
@@ -142,6 +148,7 @@ function ObjectDetection() {
 
   return (
     <div>
+      <ModalLoading opened={opened} close={close} />
       <Title
         title="Object Detection"
         subTitle="See Beyond Limits: Embrace Object Detection AI, Unleash Precision in Visual Recognition!"

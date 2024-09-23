@@ -2,11 +2,12 @@
 import React, { useState, useEffect } from "react";
 import * as Yup from "yup";
 import { useForm, yupResolver } from "@mantine/form";
-import { LoadingOverlay } from "@mantine/core";
-import { useScrollIntoView } from "@mantine/hooks";
+import { LoadingOverlay, Modal } from "@mantine/core";
+import { useDisclosure, useScrollIntoView } from "@mantine/hooks";
 import Title from "@/components/Title";
 import ImageUpload from "@/components/ImageUpload";
 import { prefetchModel } from "@/utils/common";
+import ModalLoading from "@/components/ModalLoading";
 
 type Box = {
   xmin: number;
@@ -38,7 +39,7 @@ function ImageCalssification() {
     offset: 60,
   });
   const [rectData, setRectData] = useState<Item[]>([]);
-
+  const [opened, { open, close }] = useDisclosure(false);
   const [apiLoading, setApiLoading] = useState(false);
 
   const schemaValidate = Yup.object().shape({
@@ -70,6 +71,10 @@ function ImageCalssification() {
           body: data.inputData[0].binary,
         }
       );
+      if (res.status === 503) {
+        open();
+        setApiLoading(false);
+      }
 
       if (res.ok) {
         const result = await res.json();
@@ -114,6 +119,7 @@ function ImageCalssification() {
   };
   return (
     <div>
+      <ModalLoading opened={opened} close={close} />
       <Title
         title="Image Classification"
         subTitle="Unleash Visual Insight: Harness Image Classification AI, Decode the World through Pixels!"

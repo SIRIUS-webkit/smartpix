@@ -2,19 +2,19 @@
 import React, { useContext, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { AuthContext } from "@/utils/AuthContext";
-import TextToImage from "@/components/TextToImage";
 import Title from "@/components/Title";
+import Translation from "@/components/Translation";
 import { prefetchModel } from "@/utils/common";
 
-function Playground() {
+function TranslationPage() {
   const router = useRouter();
   const { user }: any = useContext(AuthContext);
 
-  useEffect(() => {
-    prefetchModel(
-      `${process.env.texttoimageAPI}/${process.env.texttoimageMODEL}`
-    );
-  }, []);
+  //   useEffect(() => {
+  //     prefetchModel(
+  //       `${process.env.texttoimageAPI}/${process.env.texttoimageMODEL}`
+  //     );
+  //   }, []);
 
   return (
     <div>
@@ -24,8 +24,8 @@ function Playground() {
             Step into a world of boundless creativity!
           </h2>
           <p className="p2-regular-16">
-            Watch your prompts turn into beautiful designs, images, and
-            artworks. SmartPix brings your ideas to life.
+            Watch your prompts turn into translation. SmartPix brings your ideas
+            to life.
           </p>
           <button
             type="button"
@@ -38,14 +38,14 @@ function Playground() {
       ) : (
         <>
           <Title
-            title="Text to Image Generator"
-            subTitle="Visualize Your Ideas: Unlock the Power of Text-to-Image AI, Transform Words into Captivating Images!"
+            title="Translation"
+            subTitle="Translate Your Ideas into SmartPix's Desirable Languages and Boosted At Your Business."
           />
-          <TextToImage />
+          <Translation />
         </>
       )}
     </div>
   );
 }
 
-export default Playground;
+export default TranslationPage;

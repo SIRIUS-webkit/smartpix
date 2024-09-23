@@ -18,7 +18,7 @@ export async function POST(request: Request) {
       body: JSON.stringify(data.inputs),
     }
   );
-  console.log(res);
+
   const arrayBuffer = await res.arrayBuffer();
   const bytes = new Uint8Array(arrayBuffer);
   let binary = "";

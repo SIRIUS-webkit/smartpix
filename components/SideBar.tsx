@@ -11,7 +11,7 @@ import { HiOutlineChevronRight } from "react-icons/hi";
 import { RiImageEditFill } from "react-icons/ri";
 import { FaRegObjectGroup } from "react-icons/fa";
 import { GiArtificialHive } from "react-icons/gi";
-import { MdModelTraining } from "react-icons/md";
+import { MdOutlineVideoStable, MdTranslate } from "react-icons/md";
 import { BsPersonCircle } from "react-icons/bs";
 import { Badge } from "@mantine/core";
 import { AuthContext } from "@/utils/AuthContext";
@@ -56,11 +56,20 @@ function SideBar({ open, setOpen }: SideBarProps) {
     {
       title: "Text to Video",
       src: "Calendar",
-      activeText: "modeltraining",
-      link: "/",
-      isPremiun: true,
-      icon: <MdModelTraining className="text-[20px]" />,
+      activeText: "text-to-video",
+      link: "/playground/text-to-video",
+      isPremiun: false,
+      icon: <MdOutlineVideoStable className="text-[20px]" />,
       tooltext: "Text to Video",
+    },
+    {
+      title: "Translation",
+      src: "Calendar",
+      activeText: "translation",
+      link: "/playground/translation",
+      isPremiun: false,
+      icon: <MdTranslate className="text-[20px]" />,
+      tooltext: "Translation",
     },
   ];
   const pathname: string = usePathname();

@@ -9,20 +9,12 @@ import { AiOutlineDownload } from "react-icons/ai";
 import { randPrompts, themeStyleImages } from "@/utils/common";
 import { useDisclosure } from "@mantine/hooks";
 import PreviewModal from "./PreviewModal";
-import ModalLoading from "./ModalLoading";
 
-interface propsThemsImage {
-  id: number;
-  url: string;
-  text: string;
-}
-
-function TextToImage() {
+function TextVideo() {
   const [imageUrl, setImageUrl] = useState<string>("");
   const [apiLoading, setApiLoading] = useState<boolean>(false);
 
   const [opened, { open, close }] = useDisclosure(false);
-  const [opened2, handlers2] = useDisclosure(false);
 
   const schemaValidate = Yup.object().shape({
     prompt: Yup.string()
@@ -41,7 +33,8 @@ function TextToImage() {
   const generateData = async (data: string) => {
     setImageUrl("");
     setApiLoading(true);
-    const res = await fetch("/api/generate", {
+
+    const res = await fetch("/api/video-generate", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -49,14 +42,11 @@ function TextToImage() {
       },
       body: JSON.stringify({ inputs: data }),
     });
-    const result = await res.json();
-    if (res.status === 503) {
-      handlers2.open();
-      setApiLoading(false);
-    } else if (res.status === 200) {
-      setImageUrl(result.data);
-      form.setFieldValue("prompt", "");
-    }
+    // const result = await res.json();
+    // if (res.status) {
+    //   setImageUrl(result.data);
+    //   form.setFieldValue("prompt", "");
+    // }
     setApiLoading(false);
   };
 
@@ -90,7 +80,6 @@ function TextToImage() {
 
   return (
     <>
-      <ModalLoading opened={opened2} close={handlers2.close} />
       <div className="grid grid-cols-12 mdmin1050:gap-[50px] gap-0">
         <div
           className={`mdmin1050:col-span-6 col-span-12 w-full ${
@@ -115,40 +104,6 @@ function TextToImage() {
                 Set random prompt
               </button>
             </div>
-            <div>
-              <p className="p2-bold-16 font-bold mb-3">Art Style</p>
-              <ScrollArea h={250}>
-                <div className="grid grid-cols-12 gap-3 relative rounded-md">
-                  {themeStyleImages().map((item: propsThemsImage) => (
-                    <div
-                      key={item.id}
-                      className="w-full text-center mdmin720:col-span-3 col-span-6 cursor-pointer relative rounded-md"
-                    >
-                      <Indicator
-                        inline
-                        label="Premium"
-                        position="bottom-center"
-                        size={16}
-                      >
-                        <div className="w-full overflow-hidden rounded-md">
-                          <Image
-                            src={`/assets/themestyle/${item.url}`}
-                            height={100}
-                            alt="show"
-                            radius="md"
-                            className="object-cover hover:scale-150 duration-500 transition-all"
-                          />
-                        </div>
-                      </Indicator>
-
-                      <p className="text-center p4-bold-12 mt-[3px]">
-                        {item.text}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </ScrollArea>
-            </div>
             <div className="flex justify-center items-center my-8">
               <button
                 type="submit"
@@ -157,7 +112,7 @@ function TextToImage() {
                 }`}
                 disabled={apiLoading}
               >
-                {apiLoading ? "Creating..." : "Create"}
+                {apiLoading ? "Generating..." : "Generate"}
               </button>
             </div>
           </form>
@@ -230,4 +185,4 @@ function TextToImage() {
   );
 }
 
-export default TextToImage;
+export default TextVideo;
