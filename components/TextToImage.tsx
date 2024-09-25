@@ -41,23 +41,45 @@ function TextToImage() {
   const generateData = async (data: string) => {
     setImageUrl("");
     setApiLoading(true);
-    const res = await fetch("/api/generate", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.huggingTOKEN}`,
-      },
-      body: JSON.stringify({ inputs: data }),
-    });
-    const result = await res.json();
-    if (res.status === 503) {
-      handlers2.open();
+
+    try {
+      const res = await fetch("/api/generate", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${process.env.huggingTOKEN}`,
+        },
+        body: JSON.stringify({ inputs: data }),
+      });
+
+      const result = await res.json();
+
+      // Handle model loading
+      if (
+        res.status === 503 &&
+        result.message.includes("Model is currently loading")
+      ) {
+        handlers2.open(); // Open your modal here
+        console.log(
+          `Model loading. Please try again in ${result.estimated_time} seconds`
+        );
+      }
+
+      // Handle success
+      if (res.ok) {
+        setImageUrl(result.data); // Set the image URL to the base64 data
+        form.setFieldValue("prompt", "");
+      }
+
+      // Handle other errors
+      if (!res.ok && res.status !== 503) {
+        console.error(result.message); // Log the error message
+      }
+    } catch (error) {
+      console.error("Error generating data:", error);
+    } finally {
       setApiLoading(false);
-    } else if (res.status === 200) {
-      setImageUrl(result.data);
-      form.setFieldValue("prompt", "");
     }
-    setApiLoading(false);
   };
 
   const setRandPrompt = (): void => {
