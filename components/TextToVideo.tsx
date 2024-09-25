@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import { useForm, yupResolver } from "@mantine/form";
 import { TextInput } from "@mantine/core";
 import { IoMdLock } from "react-icons/io";
-import { randPrompts, themeStyleImages } from "@/utils/common";
+import { randPromptsVideo, themeStyleImages } from "@/utils/common";
 import { useDisclosure } from "@mantine/hooks";
 
 function TextVideo() {
@@ -67,7 +67,7 @@ function TextVideo() {
   };
 
   const setRandPrompt = (): void => {
-    const prompts: string[] = randPrompts();
+    const prompts: string[] = randPromptsVideo();
     const randomIndex: number = Math.floor(Math.random() * prompts.length);
     form.setFieldValue("prompt", prompts[randomIndex]);
   };

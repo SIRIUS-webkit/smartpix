@@ -91,12 +91,12 @@ export default function Navbar() {
                 </HoverCard.Target>
                 <HoverCard.Dropdown>
                   <div className="">
-                    {/* <button className="flex items-center p-2 hover:bg-gray-100 w-full">
-                      <span className="text-gray-800">Profile</span>
-                    </button>
                     <button className="flex items-center p-2 hover:bg-gray-100 w-full">
-                      <span className="text-gray-800">Settings</span>
-                    </button> */}
+                      <Link href="/profile">
+                        {" "}
+                        <span className="text-gray-800">Profile</span>
+                      </Link>
+                    </button>
                     <button
                       className="flex items-center p-2 hover:bg-gray-100 w-full"
                       type="button"

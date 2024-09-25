@@ -16,6 +16,16 @@ export function randPrompts() {
   return prompts;
 }
 
+export function randPromptsVideo() {
+  const prompts = [
+    "Cat and dog running",
+    "A boy is playing football",
+    "The raining is heavy",
+    "A dog fights with a cat.",
+  ];
+  return prompts;
+}
+
 export function themeStyleImages() {
   const images = [
     {
