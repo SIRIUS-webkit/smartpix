@@ -1,19 +1,16 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import * as Yup from "yup";
 import { useForm, yupResolver } from "@mantine/form";
-import { TextInput, ScrollArea, Image, Indicator } from "@mantine/core";
+import { TextInput } from "@mantine/core";
 import { IoMdLock } from "react-icons/io";
-import { MdZoomOutMap } from "react-icons/md";
-import { AiOutlineDownload } from "react-icons/ai";
 import { randPrompts, themeStyleImages } from "@/utils/common";
 import { useDisclosure } from "@mantine/hooks";
-import PreviewModal from "./PreviewModal";
 
 function TextVideo() {
-  const [imageUrl, setImageUrl] = useState<string>("");
+  const [imageUrl, setImageUrl] = useState<string>();
   const [apiLoading, setApiLoading] = useState<boolean>(false);
-
+  const videoRef = useRef<HTMLVideoElement | null>(null);
   const [opened, { open, close }] = useDisclosure(false);
 
   const schemaValidate = Yup.object().shape({
@@ -30,52 +27,49 @@ function TextVideo() {
     validate: yupResolver(schemaValidate),
   });
 
+  useEffect(() => {
+    if (imageUrl && videoRef.current) {
+      videoRef.current.src = imageUrl;
+      videoRef.current.style.display = "block"; // Ensure video is visible
+    }
+  }, [imageUrl]);
+
   const generateData = async (data: string) => {
+    // Clear any previous image/video and start loading
     setImageUrl("");
     setApiLoading(true);
 
-    const res = await fetch("/api/video-generate", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.huggingTOKEN}`,
-      },
-      body: JSON.stringify({ inputs: data }),
-    });
-    // const result = await res.json();
-    // if (res.status) {
-    //   setImageUrl(result.data);
-    //   form.setFieldValue("prompt", "");
-    // }
-    setApiLoading(false);
+    try {
+      const response = await fetch(
+        `${process.env.texttovideoAPI}/generate-video`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ prompt: data }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch video");
+      }
+
+      const blob = await response.blob();
+
+      // Make sure the video element is selected and cast as HTMLVideoElement
+      setImageUrl(URL.createObjectURL(blob));
+    } catch (error) {
+      console.error("Error generating video:", error);
+    } finally {
+      setApiLoading(false); // Ensure loading state is disabled at the end
+    }
   };
 
   const setRandPrompt = (): void => {
     const prompts: string[] = randPrompts();
     const randomIndex: number = Math.floor(Math.random() * prompts.length);
     form.setFieldValue("prompt", prompts[randomIndex]);
-  };
-
-  const downloadImage = () => {
-    // Convert base64 image to a Blob object
-    const byteString = atob(imageUrl.split(",")[1]);
-    const ab = new ArrayBuffer(byteString.length);
-    const ia = new Uint8Array(ab);
-    for (let i = 0; i < byteString.length; i++) {
-      ia[i] = byteString.charCodeAt(i);
-    }
-    const blob = new Blob([ab], { type: "image/png" });
-
-    // Create a download link
-    const downloadLink = document.createElement("a");
-    downloadLink.href = URL.createObjectURL(blob);
-    downloadLink.download = "smart-pix";
-
-    // Simulate a click event on the download link
-    downloadLink.click();
-
-    // Clean up the URL object
-    URL.revokeObjectURL(downloadLink.href);
   };
 
   return (
@@ -119,30 +113,15 @@ function TextVideo() {
         </div>
         <div className="mdmin1050:col-span-6 col-span-12">
           <p className="p2-bold-16 font-bold">Art Preview</p>
+
           <div className="grid grid-cols-12 gap-5 mt-6">
             {imageUrl ? (
               <div className="relative w-full h-[200px] mdmin720:col-span-6 col-span-12 rounded-lg">
-                <Image
-                  src={imageUrl}
-                  alt="result"
-                  height={200}
-                  radius="md"
-                  className="w-full h-full object-cover"
-                />
-                <div>
-                  <div
-                    className="absolute right-12 bottom-4 bg-gray-500 p-1 rounded-full cursor-pointer"
-                    onClick={downloadImage}
-                  >
-                    <AiOutlineDownload className="text-white text-[16px]" />
-                  </div>
-                  <div
-                    className="absolute right-4 bottom-4 bg-gray-500 p-1 rounded-full cursor-pointer"
-                    onClick={open}
-                  >
-                    <MdZoomOutMap className="text-white text-[16px]" />
-                  </div>
-                </div>
+                <video
+                  ref={videoRef}
+                  controls
+                  style={{ width: "100%", height: "100%", borderRadius: "8px" }}
+                ></video>
               </div>
             ) : (
               <div className="w-full h-[200px]  bg-main-gradient mdmin720:col-span-6 col-span-12 rounded-lg flex justify-center items-center">
@@ -180,7 +159,6 @@ function TextVideo() {
           </div>
         </div>
       </div>
-      <PreviewModal url={imageUrl} opened={opened} close={close} open={open} />
     </>
   );
 }
