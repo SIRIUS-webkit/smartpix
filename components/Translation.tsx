@@ -21,7 +21,7 @@ function Translation() {
   const form = useForm({
     initialValues: {
       prompt: "",
-      lang: "jp",
+      lang: "jap",
     },
     validate: yupResolver(schemaValidate),
   });
@@ -74,7 +74,7 @@ function Translation() {
               label="Target Language"
               placeholder="Pick value"
               data={[
-                { value: "jp", label: "Japanese" },
+                { value: "jap", label: "Japanese" },
                 { value: "zh", label: "Chinese" },
                 { value: "ru", label: "Russia" },
                 { value: "fr", label: "France" },
