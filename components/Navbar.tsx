@@ -158,7 +158,7 @@ export default function Navbar() {
             >
               <a
                 onClick={() => {
-                  router.push("/playground/texttoimage");
+                  router.push("/playground/text-to-image");
                   handlers.toggle();
                 }}
               >
